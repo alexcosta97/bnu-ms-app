@@ -1,0 +1,23 @@
+\chapter{Implementation Process}
+When I started adding back-end processes to my user interface, I organized myself in order to get the easier and most repetitive tasks out of the way in order to be able to allocate more time for more important and complicated tasks.
+
+The way I ended up doing my implementation was in the following way:
+\begin{enumerate}
+  \item Program the elements related to the UI and display of screens (links between screens through buttons)
+  \item Storage of the data
+  \item Storage of data after modification
+  \item Retrieval of data to populate the UI elements for the screens that didn't require the passing of parameters
+  \item Retrieval of data to populate the UI elements of screens that require the passing of parameters
+\end{enumerate}
+
+I started with the programming of the buttons that created the links between screens since those were the easiest to program, since all they required was a button click handler and a control function to open another screen of a particular name.
+
+Then I implemented the storage of data, starting with the introduction page data, that way I had my database already designed and applied for the most part across the system. In order to do that I only needed to use some button click event handlers, the store value function for TinyDB and use the values entered in the TextBox elements of the form to be stored.
+
+After that, I took care of storing the data after it had been modified, taking in particular care if said data would influence other data, such as for example, setting another budget for expenses, which would then influence the savings that could be made as well as the daily budget.
+
+Afterwards, I started populating the UI elements of screens, and I started with the ones that weren't index specific, such as the home screen the and screen containing the list of all categories. For that I had to use for loops to iterate through all the tags of the TinyDB until I found the ones containing the names variables for the type of data that I was looking for (I could've also used other variables such as amount or the description), isolate the index of the data thorough string spliting and then retrieve the other values by joining the name of the variable and the index together to form the tag of the piece of that that I was looking for.
+
+The last element that I tackled was the implementation of screens that required data to be sent to them thorough the previous screen, such as the screens that display the information of an expense, of a category, or the one that shows the expenses that belong to a certain category. For those, along with using a list to contain all the elements to populate the ListView of the UI for the previous page, I also had to populate a list with the indexes of the elements that were being populated. When the user would press an element in the ListView, I would then use a control block to open the new screen with a start value, and the start value would be the element of the indexes' list with an index correspondant to the one of the ListView element that was pressed.
+
+In the screen that was being populated with a data of a certain index, I would then store the index in a global variable, and use it to retrieve the values that I was looking for by joining the name of the variable to the index to create the appropriate tag.

@@ -1,0 +1,34 @@
+\chapter{Data Storage Design}
+After designing the User Interface for the application, the next thing that I needed to figure out was how to store all the data for the application.
+
+I knew that since the application was designed with the intent of only being used in one particular device at one time that the persistent data was to be stored locally.
+
+After watching a video on YouTube from \cite{tinyDBTuto}, I learned that the only way to store the data locally was through the usage of an App Inventor element called TinyDB.
+
+The way TinyDB stores data is through the usage of tag-value pairs, meaning that the data stored works in a very similar way as the one used for programming normal variables, where the tag would be the equivalent for the name of a variable and the value would hold the value that we want to store.
+
+Since TinyDB wouldn't store a full database system, I had to figure out a way to store my data that would still be able to hold indexes so that all the different expenses and categories could be differenciated.
+
+The way I tackled this particular issue was through the usage of a code in the way my tags would be named, and through the usage of the split and join text functions to retrieve indexes and the different values.
+
+I structured my tags in the following way for data that needed to be indexed:
+\begin{itemize}
+  \item The first three letters would tell if the data was related to an expense (Exp) or category (Cat)
+  \item The following section of the tag would hold the particular name of the data being held (Name, Date, Amount, Budget, etc.)
+  \item The last section of the data being held would be a numerical value that would correspond to an incremental index
+\end{itemize}
+
+Implementing this method to tag my data, if I wanted to store the name of my first category, which is the Housing category, it would be stored with the following tag: CatName1. Since all the categories are established during the first launch of the application and no categories can be deleted or added to the system, there was no need to keep track of the last index for that data.
+
+However, considering that expenses can be added indefinitely to the system, there was a need to keep track of the last index used for the expenses. In order to do that, I added another tag-value pair to the TinyDB element of the system that would hold the last index used when creating an expense. That value is stored under the tag ExpensesIndex.
+
+Other data that I held in the TinyDB, along with their tags, are the following:
+\begin{itemize}
+  \item The total expenses budget for the month: Budget
+  \item The monthly income: Income
+  \item The day of the month that the user gets paid: PayDay
+  \item the total amount of savings made: Savings
+  \item The total amount of expenses for the month: TotalExpenses
+  \item The daily spend allowance: DailySpend
+  \item The amount of expenses made during the day: DailyExpenses
+\end{itemize}
